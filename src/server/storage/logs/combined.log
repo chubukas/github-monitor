@@ -47,3 +47,6 @@
 2024-08-11T19:17:20.408Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:19:17:20 +0000] "POST /api/v1/repo/particular/chubukas/New-website HTTP/1.1" 302 5182 "-" "Thunder Client (https://www.thunderclient.com)"
 2024-08-11T19:20:08.411Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:19:20:08 +0000] "GET /api/v1/repo/particular/New-website HTTP/1.1" 302 355 "-" "Thunder Client (https://www.thunderclient.com)"
 2024-08-11T19:26:23.199Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:19:26:23 +0000] "GET /api/v1/repo/particular/New-website HTTP/1.1" 302 937 "-" "Thunder Client (https://www.thunderclient.com)"
+2024-08-11T21:27:03.677Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:21:27:03 +0000] "GET /api/v1/repo/commit/New-website HTTP/1.1" 404 169 "-" "Thunder Client (https://www.thunderclient.com)"
+2024-08-11T21:27:29.673Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:21:27:29 +0000] "GET /api/v1/repo/commit/particular/New-website HTTP/1.1" 404 180 "-" "Thunder Client (https://www.thunderclient.com)"
+2024-08-11T21:27:43.484Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:21:27:43 +0000] "GET /api/v1/commit/particular/New-website HTTP/1.1" 404 175 "-" "Thunder Client (https://www.thunderclient.com)"

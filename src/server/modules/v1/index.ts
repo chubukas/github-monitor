@@ -11,6 +11,6 @@ router.get(`/`, (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.use("/repo", repoRoute);
-router.use("/repo", commitRoute);
+router.use("/commit", commitRoute);
 
 export default router;
