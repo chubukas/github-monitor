@@ -50,3 +50,5 @@
 2024-08-11T21:27:03.677Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:21:27:03 +0000] "GET /api/v1/repo/commit/New-website HTTP/1.1" 404 169 "-" "Thunder Client (https://www.thunderclient.com)"
 2024-08-11T21:27:29.673Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:21:27:29 +0000] "GET /api/v1/repo/commit/particular/New-website HTTP/1.1" 404 180 "-" "Thunder Client (https://www.thunderclient.com)"
 2024-08-11T21:27:43.484Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:21:27:43 +0000] "GET /api/v1/commit/particular/New-website HTTP/1.1" 404 175 "-" "Thunder Client (https://www.thunderclient.com)"
+2024-08-11T21:28:11.513Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:21:28:11 +0000] "GET /api/v1/commit/particular/New-website HTTP/1.1" 302 616 "-" "Thunder Client (https://www.thunderclient.com)"
+2024-08-11T21:28:52.248Z [info]: ::ffff:127.0.0.1 - - [11/Aug/2024:21:28:52 +0000] "GET /api/v1/commit/top-authors/New-website HTTP/1.1" 302 616 "-" "Thunder Client (https://www.thunderclient.com)"
