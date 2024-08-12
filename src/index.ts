@@ -39,7 +39,7 @@ app.use(errorRequest);
 // Start the server
 app.listen(port, async () => {
   try {
-    await await connectDatabase();
+    await connectDatabase();
     console.log(`Server is running on http://localhost:${port}`);
     cronJob();
   } catch (error) {
