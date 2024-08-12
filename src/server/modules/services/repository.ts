@@ -21,7 +21,7 @@ export const fetchRepository = async ({
 
     // Fetch repository metadata
     const repoResponse = await axios.get(repoUrl);
-    const repoData = repoResponse.data;
+    const repoData = repoResponse?.data;
     repoData.repoUrl = repoUrl;
 
     return {
@@ -56,7 +56,18 @@ export const saveRepository = async ({ data }: IResReq): Promise<IResReq> => {
       updatedAt: new Date(data.updated_at),
     });
 
-    return { code: HttpStatusCode.Created, data, message: "Successful" };
+    const response = await Repository.findOne({
+      where: {
+        name: data.name,
+      },
+      raw: true,
+    });
+
+    return {
+      code: HttpStatusCode.Created,
+      data: response,
+      message: "Successful",
+    };
   } catch (error) {
     console.log({ error });
 

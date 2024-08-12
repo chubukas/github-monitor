@@ -56,7 +56,7 @@ export const fetchCommit = async ({
       });
     }
 
-    commits = commitsResponse.data;
+    commits = commitsResponse?.data;
 
     return { code: HttpStatusCode.Found, data: commits, message: "Successful" };
   } catch (error) {
@@ -64,7 +64,7 @@ export const fetchCommit = async ({
 
     return {
       code: HttpStatusCode.InternalServerError,
-      message: "There was a problem fetching!",
+      message: "There was a problem fetching commits!",
       data: {},
     };
   }
@@ -102,7 +102,7 @@ export const saveCommit = async ({
 
     return {
       code: HttpStatusCode.InternalServerError,
-      message: "There was a problem creating!",
+      message: "There was a problem save Commit!",
       data: {},
     };
   }
@@ -118,7 +118,7 @@ export const fetchSaveCommit = async ({
     if (!repoData) {
       return {
         code: HttpStatusCode.InternalServerError,
-        message: "There was a problem creating!",
+        message: "There was a no repo data!",
         data: {},
       };
     }
@@ -141,7 +141,7 @@ export const fetchSaveCommit = async ({
       }
 
       const repositoryId: any = await Repository.findOne({
-        where: { url: repoData.html_url },
+        where: { url: repoData.url },
       });
 
       for (const commit of data) {
@@ -156,16 +156,21 @@ export const fetchSaveCommit = async ({
         });
 
         if (oldMessage?.message !== message) {
-          const res = await saveCommit({
+          await saveCommit({
             message,
             author: author.name,
             date,
             html_url,
             repositoryId: repositoryId.id,
           });
-
-          allCommits.push({ ...res.data });
         }
+        allCommits.push({
+          message,
+          author: author.name,
+          date,
+          html_url,
+          repositoryId: repositoryId.id,
+        });
       }
 
       page++;
@@ -181,7 +186,7 @@ export const fetchSaveCommit = async ({
 
     return {
       code: HttpStatusCode.InternalServerError,
-      message: "There was a problem creating!",
+      message: "There was a problem fetching commit!",
       data: {},
     };
   }

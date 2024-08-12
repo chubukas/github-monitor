@@ -34,21 +34,27 @@ export const saveRepoAndCommit = async ({
       };
     }
 
-    const repoData = data;
-
     const commitRes = await fetchSaveCommit({
       page: page as number,
-      repoUrl: repoData.repoUrl,
-      repoData,
+      repoUrl: data.repoUrl,
+      repoData: repos.data,
       date,
     });
+
+    if (commitRes.code !== HttpStatusCode.Created) {
+      return {
+        code: commitRes.code,
+        message: commitRes.message,
+        data: {},
+      };
+    }
 
     const returnData = repos.data;
     returnData.commits = commitRes.data;
 
     return {
-      code,
-      message,
+      code: HttpStatusCode.Created,
+      message: "Created",
       data: returnData,
     };
   } catch (error) {

@@ -8,14 +8,6 @@ export const getCommitService = async (name: string) => {
   try {
     const { data, code, message } = await getServiceCommits(name);
 
-    if (code === HttpStatusCode.NoContent) {
-      return {
-        code,
-        message,
-        data: {},
-      };
-    }
-
     return {
       code,
       message,
@@ -35,14 +27,6 @@ export const getCommitService = async (name: string) => {
 export const getAuthorsService = async (name: string) => {
   try {
     const { data, code, message } = await ServiceCommitsTotalAuthors(name);
-
-    if (code === HttpStatusCode.NoContent) {
-      return {
-        code,
-        message,
-        data: {},
-      };
-    }
 
     return {
       code,
