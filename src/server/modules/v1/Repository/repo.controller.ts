@@ -2,7 +2,7 @@ import { HttpStatusCode } from "axios";
 import { Request, Response } from "express";
 import { getRepoCommit, saveRepoAndCommit } from "./repo.services";
 
-export const saveRepo = async (req: Request, res: Response) => {
+export const getFreshRepo = async (req: Request, res: Response) => {
   try {
     const { owner, repo } = req.params;
     let page = req.query.page as unknown as number;
@@ -15,7 +15,7 @@ export const saveRepo = async (req: Request, res: Response) => {
       date,
     });
 
-    return res.status(code).json({ message, data });
+    return res.status(code).json({ code, message, data });
   } catch (error) {
     console.log({ error });
 
@@ -31,7 +31,7 @@ export const getRepo = async (req: Request, res: Response) => {
 
     const { code, data, message } = await getRepoCommit(name);
 
-    return res.status(code).json({ message, data });
+    return res.status(code).json({ code, message, data });
   } catch (error) {
     console.log({ error });
 

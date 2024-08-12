@@ -1,5 +1,5 @@
 import express from "express";
-import { saveRepo, getRepo } from "./repo.controller";
+import { getFreshRepo, getRepo } from "./repo.controller";
 
 const router = express.Router();
 
@@ -7,6 +7,6 @@ const router = express.Router();
 router.get("/stored/:name", getRepo);
 
 // POST
-router.get("/fresh/:owner/:repo", saveRepo);
+router.get("/fresh/:owner/:repo", getFreshRepo);
 
 export default router;

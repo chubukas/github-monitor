@@ -28,7 +28,7 @@ export const getAuthorsCommitsByRepo = async (req: Request, res: Response) => {
 
     const { code, data, message } = await getAuthorsService(repoName);
 
-    return res.status(code).json({ message, data });
+    return res.status(code).json({ code, message, data });
   } catch (error) {
     console.log({ error });
 
@@ -42,7 +42,7 @@ export const getMostAuthorsCommits = async (req: Request, res: Response) => {
   try {
     const { code, data, message } = await getMostCommitAuthorsService();
 
-    return res.status(code).json({ message, data });
+    return res.status(code).json({ code, message, data });
   } catch (error) {
     console.log({ error });
 

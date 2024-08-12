@@ -54,7 +54,7 @@ export const saveRepoAndCommit = async ({
 
     return {
       code: HttpStatusCode.Created,
-      message: "Created",
+      message: "Successful",
       data: returnData,
     };
   } catch (error) {
