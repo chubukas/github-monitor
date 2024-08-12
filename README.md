@@ -166,6 +166,14 @@ $ yarn test
 
 + Author - [Chukwuebuka Anyadiegwu](https://pageme.netlify.app/)
 
+## Contact and Support
+
+If you have any questions or need assistance, please reach out to our support team:
+
+- **Email:** chubukas@gmail.com
+- **Support Portal:** [Chukwuebuka Anyadiegwu](https://pageme.netlify.app/)
+
 ## License
 
-Nest is [MIT licensed](LICENSE).
+ExpressJS is [MIT licensed](LICENSE).
+
