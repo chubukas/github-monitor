@@ -4,9 +4,9 @@ import { saveRepo, getRepo } from "./repo.controller";
 const router = express.Router();
 
 // GET
-router.get("/particular/:name", getRepo);
+router.get("/stored/:name", getRepo);
 
 // POST
-router.post("/particular/:owner/:repo", saveRepo);
+router.get("/fresh/:owner/:repo", saveRepo);
 
 export default router;

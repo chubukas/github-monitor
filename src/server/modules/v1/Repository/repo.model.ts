@@ -21,7 +21,7 @@ Repository.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: DataTypes.STRING,
+    description: DataTypes.TEXT,
     url: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -31,6 +31,7 @@ export interface ICommitSave {
   date: Date;
   html_url: string;
   repositoryId: string;
+  sha: string;
 }
 
 export const fetchCommit = async ({
@@ -48,7 +49,7 @@ export const fetchCommit = async ({
     if (date) {
       const START_DATE = new Date(date).toISOString();
       commitsResponse = await axios.get(commitUrl, {
-        params: { since: START_DATE },
+        params: { since: START_DATE, per_page: 100, page },
       });
     } else {
       commitsResponse = await axios.get(commitUrl, {
@@ -76,6 +77,7 @@ export const saveCommit = async ({
   date,
   html_url,
   repositoryId,
+  sha,
 }: ICommitSave) => {
   try {
     await Commit.upsert({
@@ -84,6 +86,7 @@ export const saveCommit = async ({
       date,
       url: html_url,
       repositoryId: repositoryId,
+      sha,
     });
 
     return {
@@ -155,13 +158,14 @@ export const fetchSaveCommit = async ({
           raw: true,
         });
 
-        if (oldMessage?.message !== message) {
+        if (oldMessage?.sha !== sha) {
           await saveCommit({
             message,
             author: author.name,
             date,
             html_url,
             repositoryId: repositoryId.id,
+            sha,
           });
         }
         allCommits.push({
@@ -207,7 +211,7 @@ export const getServiceCommits = async (name: string): Promise<IResReq> => {
       where: {
         repositoryId: data.id,
       },
-
+      attributes: { exclude: ["sha"] },
       order: [["createdAt", "DESC"]],
     });
 
@@ -245,6 +249,30 @@ export const ServiceCommitsTotalAuthors = async (
       where: {
         repositoryId: data?.id,
       },
+      group: "author",
+      order: [[sequelize.fn("COUNT", sequelize.col("author")), "DESC"]],
+    });
+
+    return { code: HttpStatusCode.Found, data: authors, message: "Successful" };
+  } catch (error) {
+    console.log({ error });
+
+    return {
+      code: HttpStatusCode.NoContent,
+      message: "There was a problem creating!",
+      data: {},
+    };
+  }
+};
+
+export const ServiceMostCommitsAuthors = async (): Promise<IResReq> => {
+  try {
+    const authors = await Commit.findAll({
+      attributes: [
+        "author",
+        [sequelize.fn("COUNT", sequelize.col("author")), "count"],
+      ],
+
       group: "author",
       order: [[sequelize.fn("COUNT", sequelize.col("author")), "DESC"]],
     });

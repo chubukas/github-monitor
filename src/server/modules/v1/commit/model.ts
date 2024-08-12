@@ -9,12 +9,13 @@ export class Commit extends Model {
   public date!: Date;
   public url!: string;
   public repositoryId!: number;
+  public sha!: string;
 }
 
 Commit.init(
   {
     message: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     author: {
@@ -35,6 +36,10 @@ Commit.init(
         model: Repository,
         key: "id",
       },
+    },
+    sha: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
