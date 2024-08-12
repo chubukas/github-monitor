@@ -1,16 +1,10 @@
-import { sequelize } from "../database";
+import { connectDatabase } from "../database";
 import { Repository } from "../modules/v1/Repository/repo.model";
 import { saveRepoAndCommit } from "../modules/v1/Repository/repo.services";
 
 describe("GitHub Service", () => {
   beforeAll(async () => {
-    try {
-      await sequelize.authenticate(); // Check if the connection is successful
-      await sequelize.sync({ force: true });
-      console.log(`Database connection established and synced`);
-    } catch (error) {
-      console.error("Unable to connect to the database:", error);
-    }
+    await connectDatabase();
   });
 
   test("fetchRepositoryData stores repository data", async () => {

@@ -6,7 +6,7 @@ import cors from "cors";
 import { Routes } from "./server/modules";
 
 import { corsOptions, errorRequest, Logger } from "./server/utils";
-import { sequelize } from "./server/database";
+import { connectDatabase } from "./server/database";
 
 import { cronJob } from "./server/cronJob";
 
@@ -39,8 +39,7 @@ app.use(errorRequest);
 // Start the server
 app.listen(port, async () => {
   try {
-    await sequelize.sync({ alter: true }); // Sync the database schema
-    console.log(`Database connection established and synced`);
+    await await connectDatabase();
     console.log(`Server is running on http://localhost:${port}`);
     cronJob();
   } catch (error) {
